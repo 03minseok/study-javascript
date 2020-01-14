@@ -1,0 +1,81 @@
+함수 선언
+function [name]{
+
+}
+
+-caller 프로퍼티
+caller 프로퍼티는 자신을 호출한 함수를 의미한다.
+ex)
+function foo(func) {
+  var res = func();
+  return res;
+}
+
+function bar() {
+  return 'caller : ' + bar.caller;
+}
+
+console.log(foo(bar)); // function foo(func) {...}
+console.log(bar());    // null (browser에서의 실행 결과)
+
+-length 프로퍼티
+length 프로퍼티는 함수 정의 시 작성된 매개변수 갯수를 의미한다.
+
+-name 프로퍼티
+함수명을 나타낸다. 기명함수의 경우 함수명을 값으로 갖고 익명함수의 경우 빈문자열을 값으로 갖는다.
+
+함수의 다양한 형태
+-즉시 실행 함수 : 함수의 정의와 동시에 실행되는 함수를 즉시 실행 함수
+ex)
+// 기명 즉시 실행 함수(named immediately-invoked function expression)
+(function myFunction() {
+  var a = 3;
+  var b = 5;
+  return a * b;
+}());
+
+// 익명 즉시 실행 함수(immediately-invoked function expression)
+(function () {
+  var a = 3;
+  var b = 5;
+  return a * b;
+}());
+
+// SyntaxError: Unexpected token (
+// 함수선언문은 자바스크립트 엔진에 의해 함수 몸체를 닫는 중괄호 뒤에 ;가 자동 추가된다.
+function () {
+  // ...
+}(); // => };();
+
+// 따라서 즉시 실행 함수는 소괄호로 감싸준다.
+(function () {
+  // ...
+}());
+
+(function () {
+  // ...
+})();
+
+-내부함수 : 함수 내부에 정의된 함수
+
+-재귀함수 : 자기 자신을 호출하는 함수
+
+-콜백함수 : 특정 이벤트가 발생했을 때 시스템에 의해 호출되는 함수
+ex)
+<!DOCTYPE html>
+<html>
+<body>
+  <button id="myButton">Click me</button>
+  <script>
+    var button = document.getElementById('myButton');
+    button.addEventListener('click', function() {
+      console.log('button clicked!');
+    });
+  </script>
+</body>
+</html>
+
+타입체크----
+typeof : 피연산자의 데이터 타입을 문자열로 반환 // typeof '1' -> string
+Object.prototype.toString : 객체를 나타내는 문자열을 반환 //Object.prototype.toString.call(1); -> [object Number]
+Array.isArray : 배열인지 체크 // console.log(Array.isArray([])); -> true
