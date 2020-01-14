@@ -1,0 +1,43 @@
+객체 : 키(key)과 값(value)으로 구성된 프로퍼티(Property)들의 집합
+
+객체 생성
+var person = {
+            name : 'minseok',
+            age : 18,
+            onetalk : function(){
+                document.write('hello! my name is '+this.name+' nice to meet you!')
+            }
+        };
+
+프로퍼티는 동적 : 객체가 소유하지 않은 프로퍼티 할당해주면 동적할당 됨
+
+생성자 함수
+문제점 : 
+var person1 = {
+  name: 'Lee',
+  gender: 'male',
+  sayHello: function () {
+    console.log('Hi! My name is ' + this.name);
+  }
+};
+
+var person2 = {
+  name: 'Kim',
+  gender: 'female',
+  sayHello: function () {
+    console.log('Hi! My name is ' + this.name);
+  }
+};
+
+해결 : 
+function Person(name, gender) {
+  this.name = name;
+  this.gender = gender;
+  this.sayHello = function(){
+    console.log('Hi! My name is ' + this.name);
+  };
+}
+
+// 인스턴스의 생성
+var person1 = new Person('Lee', 'male');
+var person2 = new Person('Kim', 'female');
