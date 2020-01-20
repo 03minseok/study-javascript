@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+  table {
+    border-collapse: collapse;
+  }
+  input {
+    border:none;
+    text-align: right;
+  }
+  input:focus {
+    outline: none;
+  }
+  td {
+           padding: 5px 10px;
+           text-align: center;
+  }
+  </style>
+</head>
+<body>
+  <table border="1">
+    <thead>
+    <tr>
+      <td colspan="4">
+          <input type="text" id="display" readonly>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        <input type="text" value="0" id="result">
+      </td>
+      <td colspan="2" onclick="reset()" id="delete">AC</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr width="150">
+      <td onclick="add(7)">7</td>
+      <td onclick="add(8)">8</td>
+      <td onclick="add(9)">9</td>
+      <td onclick="add('*')">x</td>
+    </tr>
+    <tr>
+      <td onclick="add(4)">4</td>
+      <td onclick="add(5)">5</td>
+      <td onclick="add(6)">6</td>
+      <td onclick="add('/')">÷</td>
+    </tr>
+    <tr>
+      <td onclick="add(1)">1</td>
+      <td onclick="add(2)">2</td>
+      <td onclick="add(3)">3</td>
+      <td onclick="add('+')">+</td>
+    </tr>
+    <tr>
+      <td onclick="add(0)">0</td>
+      <td onclick="add('.')">.</td>
+      <td onclick="calculate()">=</td>
+      <td onclick="add('-')">-</td>
+    </tr>
+  </tbody>
+  </table>
+
+  <script>
+  function add(char) {
+  var display = document.getElementById('display');
+  display.value = display.value + char;
+    }
+  function calculate() {
+    var display = document.getElementById('display');
+    var result = eval(display.value); // 식을 계산하고 result 변수에 저장합니다.
+    document.getElementById('result').value = result;
+    }
+
+    function reset() {
+      document.getElementById('display').value = "";
+      document.getElementById('result').value = "0";
+      }
+  </script>
+</body>
+</html>
